@@ -1,0 +1,12 @@
+{
+  "extends": ["next/code-web-vitals", "prettier"],
+  "plugins": ["@typescript-eslint", "simple-import-sort", "import"],
+  "rules": {
+    "simple-import-sort": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "@typescript-eslint/consistent-type-imports": "error"
+  }
+}

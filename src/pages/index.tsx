@@ -15,6 +15,8 @@ import WindowSizeDisplay from 'components/WindowSizeDisplay'
 import CalculateSum from 'components/CalculateSum'
 import CalculateHome from 'components/CalculateHome'
 import Notification from 'components/Notification'
+// import LifeCycle from 'components/LifeCycle'
+// import ApiLifeCycle from 'components/ApiLifeCycle'
 
 const users = [
   { id: 1, name: 'Taro' },
@@ -50,6 +52,8 @@ const Home: NextPage = () => {
         <CalculateSum values={[1,2,3,4,5]} />
         <CalculateHome />
         <Notification message={'ヤハー'} type={'success'} />
+        {/* <LifeCycle /> */}
+        {/* <ApiLifeCycle /> */}
 
         <div className="pt-10 font-bold text-red-500">
           Hello Tailwind CSS!

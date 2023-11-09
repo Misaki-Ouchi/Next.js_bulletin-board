@@ -1,4 +1,4 @@
-import useFetch from 'hooks/useFetch'
+import useFetch from '~/features/_template/hooks/useFetch'
 
 type User = {
   id: number

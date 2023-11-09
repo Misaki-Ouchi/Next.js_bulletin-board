@@ -1,7 +1,34 @@
 body {
-  min-width: 600px;
+  min-width: 400px;
   margin: 0;
 }
 a {
   text-decoration: none;
+}
+input {
+  max-width: 100%;
+}
+header {
+  position: relative;
+  box-shadow: 0 2px 5px #aaa;
+  z-index: 10;
+}
+aside {
+  position: relative;
+  max-width: 160px;
+  box-shadow: 2px 0 5px #aaa;
+}
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+.btn {
+  background-color: rgb(240, 240, 240, 70);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 0.1rem 0.2rem;
+}
+.btn:hover {
+  background-color: rgb(220, 220, 220);
 }

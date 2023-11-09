@@ -4,12 +4,6 @@
 
 @layer components {
   .container_box {
-    @apply container p-2
-  },
-  .flex_box {
-    @apply flex flex-1
-  },
-  .a_link {
-    @apply hover:opacity-75 hover:underline
+    @apply container p-4
   }
 }

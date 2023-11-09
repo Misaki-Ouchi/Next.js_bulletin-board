@@ -4,5 +4,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  // ↓リセットしたくないなら追加
+  // plugins: [],
+  // corePlugins: {
+  //   preflight: false
+  // }
 }

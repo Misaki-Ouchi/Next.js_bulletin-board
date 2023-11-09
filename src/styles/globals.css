@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 @layer components {
-  button {
-    @apply py-2 px-4 bg-yellow-400 font-semibold rounded-lg shadow-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+  .container_box {
+    @apply container p-2
+  },
+  .flex_box {
+    @apply flex flex-1
+  },
+  .a_link {
+    @apply hover:opacity-75 hover:underline
   }
 }

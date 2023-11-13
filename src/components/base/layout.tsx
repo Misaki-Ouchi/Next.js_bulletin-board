@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <div className='flex flex-row-reverse'>
+      <div className='mainAndAside flex flex-row-reverse'>
         <Main />
         <Aside />
       </div>

@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Layout from '~/components/base/Layout'
 
+
 const Home: NextPage = () => {
   return (
     <>
@@ -9,7 +10,7 @@ const Home: NextPage = () => {
         <title>NextApp like todoEba</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Layout />
+      <Layout />
     </>
   )
 }

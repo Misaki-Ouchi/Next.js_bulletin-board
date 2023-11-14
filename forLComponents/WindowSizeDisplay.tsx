@@ -1,4 +1,4 @@
-import useWindowSize from "~/features/_template/hooks/useWindowSize";
+import useWindowSize from "forLComponents/hooks/useWindowSize";
 
 const WindowSizeDisplay = () => {
   const size = useWindowSize()

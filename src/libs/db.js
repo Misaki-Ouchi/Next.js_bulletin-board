@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise'
 
-export async function Dbquery(sql) {
+export async function DBquery(sql) {
   const connection = await mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,

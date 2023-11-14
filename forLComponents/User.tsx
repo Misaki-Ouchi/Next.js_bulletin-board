@@ -1,4 +1,4 @@
-import useFetch from '~/features/_template/hooks/useFetch'
+import useFetch from 'forLComponents/hooks/useFetch'
 
 type User = {
   id: number

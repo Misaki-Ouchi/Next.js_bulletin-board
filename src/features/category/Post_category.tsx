@@ -39,6 +39,7 @@ export default function Post_category() {
           type="text"
           placeholder="カテゴリ名(2文字以上)"
         />
+        <br/>
         <button type="submit" className="mb-3 btn">
           カテゴリ登録
         </button>

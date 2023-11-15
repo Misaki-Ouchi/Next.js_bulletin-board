@@ -6,13 +6,13 @@
   .container_box {
     @apply container p-4
   }
-  /* .form_label_required {
-    @apply pr-3 
-  } */
   .newTopic_input {
     @apply w-full
   }
   .form_btn {
     @apply m-auto block
+  }
+  .category_links {
+    @apply block hover:bg-yellow-200 before:mr-2 before:content-['>']
   }
 }

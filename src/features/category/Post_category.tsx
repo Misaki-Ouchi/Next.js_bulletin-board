@@ -18,14 +18,11 @@ export default function Post_category() {
       body: JSON.stringify({ category_name: categoryName }),
     }
     if (categoryName.length < 2) return
-
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/categories`,
       postData,
     )
-
     const response = await res.json()
-    if (response.response.message !== 'success') return
   }
 
   return (

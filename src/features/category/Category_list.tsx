@@ -1,5 +1,6 @@
 import { useFetch } from '@/features/hooks/useFetch'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 // type Category = {
 //   id: number
@@ -7,7 +8,6 @@ import { useState, useEffect } from 'react'
 // }
 
 export default function Category_list() {
-  
   // const { data, isLoading, isError } = useFetch('categories')
   // console.log(data)
 
@@ -29,8 +29,7 @@ export default function Category_list() {
       postData,
     )
     const response = await res.json()
-    setCategories(response.categories)
-    console.log(response.categories)
+    setCategories(response)
   }
 
   useEffect(() => {
@@ -40,10 +39,17 @@ export default function Category_list() {
   return (
     <>
       {categories !== undefined &&
-        categories[0].map((item, index) => {
+        categories.map((item, index) => {
           return (
             <ul>
-              <li key={item.category_id}>{item.category_name}</li>
+              <li>
+                <Link
+                  className='category_links'
+                  href={`/api/titles/${item.category_id}`}
+                  key={item.category_id}>
+                  {item.category_name}
+                </Link>
+              </li>
             </ul>
           )
         })}

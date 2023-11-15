@@ -3,7 +3,7 @@ import Post_comment from '@/features/comment/Post_comment'
 const Main = () => {
   return (
     <>
-      <main className="container bg-pink-200">
+      <main className="container">
         <div className="container_box">
           <p>コメント(･ω･)一覧</p>
         </div>

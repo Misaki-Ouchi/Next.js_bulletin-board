@@ -1,13 +1,14 @@
-import Post_comment from '@/features/comment/Post_comment'
+import RecentTitles from '@/components/main_parts/RecentTitles'
+import SomeCategory from '@/components/page_main/SomeCategory'
+import SomeTitle from '@/components/page_main/SomeTitle'
 
-const Main = () => {
+const Main = ({children}) => {
   return (
     <>
       <main className="container">
         <div className="container_box">
-          <p>コメント(･ω･)一覧</p>
+        {children}
         </div>
-        <Post_comment />
       </main>
     </>
   )

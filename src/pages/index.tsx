@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Layout from '@/components/base/Layout'
-
+import RecentTitles from '@/components/main_parts/RecentTitles'
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +10,9 @@ const Home: NextPage = () => {
         <title>NextApp like todoEba</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout />
+      <Layout>
+        <RecentTitles />
+      </Layout>
     </>
   )
 }

@@ -6,7 +6,7 @@ export default async function category_title_id(req,res) {
     } = req
     const sql = `SELECT * FROM titles WHERE category_id = ${category_id}`
     const titles = await DBquery(sql)
-    res.status(200).json(titles[0][0])
+    res.status(200).json(titles[0])
 }
 
 // export default (req, res) => {

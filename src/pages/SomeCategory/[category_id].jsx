@@ -1,34 +1,37 @@
 import useFetch from '@/features/hooks/getAPI/useFetch'
+import { useRouter } from "next/router";
+import Link from 'next/link'
+import Layout from '@/components/base/Layout'
+import SomeCategory_parts from '@/components/main_parts/SomeCategory_parts'
+import Title_list from '@/features/titles/Title_list'
 
-async function Category_ID() {
-  const {
-    query: { category_id }
-  } = req
+function Category_ID() {
+  const router = useRouter()
+  const req = router.query.category_id
+  // const { data, isLoading, error } = useFetch(`/titles/category_id/${req}`)
 
-  const { data, isLoading, error } = useFetch(`/categories/${req}`)
-
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-  if (error) {
-    return <p>Error occurred.</p>
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>
+  // }
+  // if (error) {
+  //   return <p>Error occurred.</p>
+  // }
   return (
     <>
-      {data.map((item, index) => {
+      <SomeCategory_parts category_id={req} />
+      {/* <ul>
+        {data.map((item, index) => {
           return (
-            <ul>
               <li>
                 <Link
-                  className='category_links'
-                  href={`/api/titles/${item.category_id}`}
-                  key={item.category_id}>
-                  {item.category_name}
+                  href={`/SomeTitle/${item.title_id}`}
+                  key={item.title_id}>
+                  {item.title_name}
                 </Link>
               </li>
-            </ul>
           )
         })}
+      </ul> */}
     </>
   )
 

@@ -1,5 +1,5 @@
 import Header from '@/components/base/Header'
-import Post_title from '@/features/title/Post_title'
+import Post_title from '@/features/titles/Post_title'
 
 const NewTopics = () => {
   return (

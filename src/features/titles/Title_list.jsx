@@ -14,7 +14,10 @@ export default function Title_list({ category_id }) {
   }
   return (
     <>
+      {/* カテゴリー名 */}
       <h2>{data_col[0].category_name}</h2>
+
+      {/* タイトルリスト */}
       <ul>
         {data.map((item, index) => {
           return (

@@ -27,6 +27,6 @@ export default async function titles(
         "${titleValues.created_at}"
       )`
     const addTitles = await DBquery(sql)
-    res.status(200).json(addTitles[0])
+    res.status(200).json(addTitles[0].insertId)
   }
 }

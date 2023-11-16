@@ -1,12 +1,13 @@
+import Comment_list from '@/features/comments/Comment_list'
 import Post_comment from '@/features/comments/Post_comment'
 
-const SomeTitle = () => {
+const SomeTitle_parts = ({title_id}) => {
   return (
     <>
-      <p>タイトル</p>
-      <Post_comment />
+      <Comment_list title_id={title_id} />
+      <Post_comment/>
     </>
   )
 }
 
-export default SomeTitle
+export default SomeTitle_parts

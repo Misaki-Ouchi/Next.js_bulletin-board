@@ -1,36 +1,50 @@
-import {useState} from 'react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import useFetch from '@/features/hooks/getAPI/useFetch'
+import useTimeFunc from '@/features/hooks/getTime/useTimeFunc'
 
 const Post_title = () => {
-  // 仮リスト
-  const categories = [{ category_id: 1, category_name: "みんなに相談"}, { category_id: 2, category_name: "雑談"}, { category_id: 3, category_name: "報告"}]
+  const router = useRouter()
 
+  // カテゴリー一覧
+  const { data, isLoading, error } = useFetch(`/categories`)
+
+  // フォーム用初期値
   const initialValues = {
     title_name: '',
     category_id: 1,
     outline: '',
-    created_at: ''
+    created_at: '',
   }
+  // フォーム入力値
   const [formValues, setFormValues] = useState(initialValues)
+
+  // バリデーションエラー値
   const [formErrors, setFormErrors] = useState({})
 
+  // 入力値保存
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value })
   }
+
+  // フォーム送信ボタンクリック
   const handleSubmit = (e) => {
     e.preventDefault()
     setFormErrors(validate(formValues))
     if (
       Object.keys(formErrors).length === 0 &&
-      formValues.title_name !== "" &&
-      formValues.outline !== ""
+      formValues.title_name !== '' &&
+      formValues.outline !== ''
     ) {
-      const dt = new Date()
-      setFormValues(formValues.created_at = dt)
+      const timeData = useTimeFunc()
+      setFormValues((formValues.created_at = timeData))
+      // フォーム送信
       postTitles(formValues)
     }
   }
 
+  // フォームのバリデーション
   const validate = (values) => {
     const errors = {}
     if (values.title_name === '') {
@@ -46,74 +60,96 @@ const Post_title = () => {
     return errors
   }
 
+  // POST＆データID取得
   const postTitles = async (values) => {
-    const postData = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
+    let response
+    try {
+      const postData = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      }
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/titles`,
+        postData,
+      )
+      response = await res.json()
     }
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/titles`,
-      postData,
-    )
-    const response = await res.json()
+    finally {
+      const new_id = response[0]
+      // 新タイトルのコメント一覧ページへ
+      router.push(`/SomeTitle/${new_id}`, { scroll: true })
+    }
+  }
+
+  // ロード中
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
+  // エラー時
+  if (error) {
+    return <p>Error occurred.</p>
   }
 
   return (
-      <div className='container_box text-sm'>
-        <h1 className='mt-4 mb-8'>トピックの作成</h1>
-        <hr className='mb-6'/>
-          <p className='text-center mb-6'>必要事項を入力し、「作成」ボタンを押してください。</p>
-          <form className="bg-gray-200 border border-gray-400 rounded-xl p-6 mb-4">
-            <div>
-              <div className='flex mb-2'>
-                <label className='form_label form_label_required'>タイトル</label>
-                <input
-                  className='newTopic_input'
-                  type="text"
-                  placeholder='30文字以内'
-                  name="title_name"
-                  value={formValues.title_name}
-                  onChange={handleChange}
-              />
-              </div>
-              <div className='flex mb-2'>
-                <label className='form_label'>カテゴリ</label>
-              <select
-                className='newTopic_input'
-                name="category_id"
-                onChange={handleChange}
-                value={formValues.category_id}
-              >
-                {categories.map((item, index) => {
-                  return (
-                    <option
-                      key={item.category_id}
-                      value={item.category_id}
-                      label={item.category_name}
-                    />
-                    )
-                  })}
-                </select>
-              </div>
-              <div className='flex mb-2'>
-                <label className='form_label form_label_required'>本文</label>
-                <textarea
-                  className='newTopic_input h-24'
-                placeholder='500文字以内'
-                name="outline"
-                  value={formValues.outline}
-                  onChange={handleChange}
-              />
-              </div>
-            <span className='errorText'>{formErrors.title_name}</span>
-            <span className='errorText'>{formErrors.outline}</span>
-            </div>
-          </form>
-          <button onClick={handleSubmit} className='btn form_btn'>作成</button>
-      </div>
+    <div className="container_box text-sm">
+      <h1 className="mt-4 mb-8">トピックの作成</h1>
+      <hr className="mb-6" />
+      <p className="text-center mb-6">
+        必要事項を入力し、「作成」ボタンを押してください。
+      </p>
+      <form className="bg-gray-200 border border-gray-400 rounded-xl p-6 mb-4">
+        <div>
+          <div className="flex mb-2">
+            <label className="form_label form_label_required">タイトル</label>
+            <input
+              className="newTopic_input"
+              type="text"
+              placeholder="30文字以内"
+              name="title_name"
+              value={formValues.title_name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex mb-2">
+            <label className="form_label">カテゴリ</label>
+            <select
+              className="newTopic_input"
+              name="category_id"
+              onChange={handleChange}
+              value={formValues.category_id}
+            >
+              {data.map((item, index) => {
+                return (
+                  <option
+                    key={item.category_id}
+                    value={item.category_id}
+                    label={item.category_name}
+                  />
+                )
+              })}
+            </select>
+          </div>
+          <div className="flex mb-2">
+            <label className="form_label form_label_required">本文</label>
+            <textarea
+              className="newTopic_input h-24"
+              placeholder="500文字以内"
+              name="outline"
+              value={formValues.outline}
+              onChange={handleChange}
+            />
+          </div>
+          <span className="errorText">{formErrors.title_name}</span>
+          <span className="errorText">{formErrors.outline}</span>
+        </div>
+      </form>
+      <button onClick={handleSubmit} className="btn form_btn">
+        作成
+      </button>
+    </div>
   )
 }
 

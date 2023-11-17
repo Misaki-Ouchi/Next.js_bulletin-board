@@ -1,35 +1,40 @@
 import useFetch from '@/features/hooks/getAPI/useFetch'
 import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
-import Link from 'next/link'
+import ATitle from './ATitle'
 
 export default function Title_list({ category_id }) {
-  const { data, isLoading, error } = useFetch(`/titles/category_id/${category_id}`)
-  const { data_col, isLoading_col, error_col } = useFetch_col(`/categories/${category_id}/category_name`)
+  const titles = useFetch(`/titles/category_id/${category_id}`)
+  const category = useFetch(`/categories/${category_id}`)
 
-  if (isLoading || isLoading_col) {
+  if (titles.isLoading || category.isLoading) {
     return <p>Loading...</p>
   }
-  if (error || error_col) {
+  if (titles.error || category.error) {
     return <p>Error occurred.</p>
   }
+
+  const titlesD = titles.data
+  const categoryD = category.data[0]
+
   return (
     <>
       {/* カテゴリー名 */}
-      <h2>{data_col[0].category_name}</h2>
+      <h2>{categoryD.category_name}</h2>
 
       {/* タイトルリスト */}
-      <ul>
-        {data.map((item, index) => {
+      <ul className='border-t border-gray-400'>
+        {titlesD.map((item, index) => {
           return (
-            <li>
-              <Link
+            <li className='p-1 border-b border-l border-r border-gray-400'>
+              <ATitle title={item} category={categoryD} />
+              {/* <Link
                 href={`/SomeTitle/${item.title_id}`}
                 key={item.title_id}
               >
                 {item.title_name}
                 {item.outline}
                 {item.created_at}
-              </Link>
+              </Link> */}
             </li>
           )
         })}

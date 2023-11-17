@@ -78,9 +78,8 @@ const Post_title = () => {
       response = await res.json()
     }
     finally {
-      const new_id = response[0]
       // 新タイトルのコメント一覧ページへ
-      router.push(`/SomeTitle/${new_id}`, { scroll: true })
+      router.push(`/SomeTitle/${response}`)
     }
   }
 

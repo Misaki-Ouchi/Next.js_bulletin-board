@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useFetch_col = (
+const useFetch_recent = (
   url_end: string
 ) => {
   
@@ -11,12 +11,12 @@ const useFetch_col = (
   const getData = async() => {
     try {
       const postData = {
-        method: 'GET',
+        method: 'GET_RECENT',
         headers: {
           'Content-Type': 'application/json',
         },
       }
-      const url = `${process.env.NEXT_PUBLIC_URL}/api${url_end}`
+      const url = `${process.env.NEXT_PUBLIC_URL}/api${url_end}/recent`
       const res = await fetch(url, postData)
       const data = await res.json()
       setData(data)
@@ -35,4 +35,4 @@ const useFetch_col = (
   return { data, isLoading, error }
 }
 
-export default useFetch_col
+export default useFetch_recent

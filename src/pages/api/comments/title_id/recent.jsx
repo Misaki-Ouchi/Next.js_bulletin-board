@@ -1,10 +1,10 @@
 import { DBquery } from '@/libs/db'
 
-export default async function comments_title_id(req,res) {
+export default async function comments_title_id_recent(req,res) {
     const {
       query: { title_id }
     } = req
-    const sql = `SELECT * FROM comments WHERE title_id = ${title_id} ORDER BY created_at DESC`
+    const sql = `SELECT * FROM comments WHERE title_id = ${title_id}`
     const comments = await DBquery(sql)
     res.status(200).json(comments[0])
 }

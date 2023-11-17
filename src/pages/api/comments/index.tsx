@@ -7,7 +7,7 @@ export default async function comments(
 ) {
 
   if (req.method === 'GET') {
-    const sql = 'SELECT * FROM comments;'
+    const sql = 'SELECT * FROM comments ORDER BY created_at DESC;'
     const comments = await DBquery(sql)
     res.status(200).json(comments[0])
   }

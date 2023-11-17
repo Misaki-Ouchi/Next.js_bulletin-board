@@ -7,7 +7,7 @@ export default async function titles(
 ) {
 
   if (req.method === 'GET') {
-    const sql = 'SELECT * FROM titles'
+    const sql = 'SELECT * FROM titles ORDER BY created_at DESC'
     const titles = await DBquery(sql)
     res.status(200).json(titles[0])
   }
@@ -27,6 +27,7 @@ export default async function titles(
         "${titleValues.created_at}"
       )`
     const addTitles = await DBquery(sql)
+    console.log(addTitles[0].insertId)
     res.status(200).json(addTitles[0].insertId)
   }
 }

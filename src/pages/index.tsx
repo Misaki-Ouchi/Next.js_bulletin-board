@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
 import Layout from '@/components/base/Layout'
-import RecentTitles from '@/components/main_parts/RecentTitles'
+import RecentTitles from '@/features/titles/RecentTitles'
 
 const Home: NextPage = () => {
   return (

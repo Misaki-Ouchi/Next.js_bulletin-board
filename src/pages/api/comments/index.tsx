@@ -14,7 +14,7 @@ export default async function comments(
 
   if (req.method === 'POST') {
     const commentValues = req.body
-    const sql = `INSERT INTO titles (
+    const sql = `INSERT INTO comments (
         title_id,
         user_id,
         comment_content,

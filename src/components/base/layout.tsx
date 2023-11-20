@@ -7,7 +7,7 @@ const Layout = ({children}) => {
   return (
     <>
       <Header />
-      <div className='mainAndAside flex flex-row-reverse'>
+      <div className='flex flex-row-reverse'>
         <Main>{children}</Main>
         <Aside />
       </div>

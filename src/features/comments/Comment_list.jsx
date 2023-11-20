@@ -6,7 +6,7 @@ import AComment from './AComment'
 export default function Comment_list({title_id}) {
   const comments = useFetch(`/comments/title_id/${title_id}`)
   const title = useFetch(`/titles/${title_id}`)
-  
+
   if (comments.isLoading || title.isLoading_col) {
     return <p>Loading...</p>
   }
@@ -27,8 +27,12 @@ export default function Comment_list({title_id}) {
       </div>
 
       <div className='m-4'>
-        <hr/>
-        <span className='text-[0.7rem]'>登録：{titleD.created_at}</span>
+        <hr className='mb-1'/>
+        <p className='text-[0.7rem]'>
+          更新：{titleD.recent_post}
+        <br/>
+          登録：{titleD.created_at}
+        </p>
       </div>
 
       {/* コメントリスト */}
@@ -42,7 +46,7 @@ export default function Comment_list({title_id}) {
               <AComment
                 comment_id={item.comment_id}
                 user_id={item.user_id}
-                index={commentLen - item.comment_id + 1} />
+                index={commentLen - index} />
             </li>
           )
         })}

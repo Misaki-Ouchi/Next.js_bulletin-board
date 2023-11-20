@@ -5,7 +5,7 @@
   color: #333;
 }
 body {
-  min-width: 500px;
+  min-width: 700px;
 }
 
 h1 {
@@ -38,7 +38,6 @@ header {
 }
 aside {
   position: relative;
-  max-width: 160px;
   box-shadow: 2px 0 5px #aaa;
 }
 footer {

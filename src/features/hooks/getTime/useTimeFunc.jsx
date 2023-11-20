@@ -14,7 +14,7 @@ const useTimeFunc = () => {
     const time = dt.getMinutes()
 
     // 〇年〇月〇日（曜日）△時△分
-    const timeData = `${year}年${month}月${date}日（${day}）${hour}時${time}分`
+    const timeData = `${year}年${month}月${date}日(${day})${hour}時${time}分`
 
   return timeData
 

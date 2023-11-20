@@ -38,9 +38,11 @@ const Post_title = () => {
       formValues.outline !== ''
     ) {
       const timeData = useTimeFunc()
-      setFormValues((formValues.created_at = timeData))
+      setFormValues({ ...formValues, created_at: timeData })
       // フォーム送信
-      postTitles(formValues)
+      postTitles('POST', formValues)
+      // let po_co_val = {title_id: formValues.titleId, created_at: formValues.created_at}
+      // postTitles('POST_COMMENT', po_co_val)
     }
   }
 
@@ -61,11 +63,11 @@ const Post_title = () => {
   }
 
   // POST＆データID取得
-  const postTitles = async (values) => {
+  const postTitles = async (method, values) => {
     let response
     try {
       const postData = {
-        method: 'POST',
+        method: method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -80,6 +82,7 @@ const Post_title = () => {
     finally {
       // 新タイトルのコメント一覧ページへ
       router.push(`/SomeTitle/${response}`)
+      // setTitleId(response)
     }
   }
 

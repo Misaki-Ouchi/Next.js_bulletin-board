@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from "next/router";
 
 const useFetch = (
   url_end: string
 ) => {
+
+  const router = useRouter()
   
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -30,7 +33,7 @@ const useFetch = (
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [router])
 
   return { data, isLoading, error }
 }

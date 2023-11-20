@@ -1,19 +1,35 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
 import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
-import useFetch_recent from '@/features/hooks/getAPI/useFetch_recent'
 
-export default function ATitle({title, category}) {
-  // const comment = useFetch(`/titles/${title_id}`)
-  // const category = useFetch_col(`/categories/${category_id}/category_name`)
-  const comment_recent = useFetch_recent(`/comments/title_id/recent`)
+export default function ATitle({ title, category }) {
+  const comment_recent = useFetch(`/comments/title_id/${title.title_id}/recent`)
+  let categoryD
 
-  if (comment_recent.isLoading) {
-    return <p>Loading...</p>
+  if (typeof category !== 'number') {
+    categoryD = category
+
+    if (comment_recent.isLoading || categoryD.isLoading) {
+      return <p>Loading...</p>
+    }
+    if (comment_recent.error || categoryD.error) {
+      return <p>Error occurred.</p>
+    }
   }
-  if (comment_recent.error) {
-    return <p>Error occurred.</p>
+
+  if (typeof category === 'number') {
+    categoryD = useFetch(`/categories/${category}`)
+
+    if (comment_recent.isLoading || categoryD.isLoading) {
+      return <p>Loading...</p>
+    }
+    if (comment_recent.error || categoryD.error) {
+      return <p>Error occurred.</p>
+    }
+    
+    categoryD = categoryD.data[0]
   }
+
 
   return (
     <>
@@ -21,13 +37,21 @@ export default function ATitle({title, category}) {
         {title.title_name}
       </Link>
       <Link
-        href={`/SomeCategory/${category.category_id}`}
+        href={`/SomeCategory/${categoryD.category_id}`}
         className='ml-1 text-xs text-blue-600'
       >
-        {category.category_name}
+        {categoryD.category_name}
       </Link>
-      <p className='text-sm'>{title.outline}</p>
-      <small>{ }</small>
+      <div className='flex justify-between'>
+        <p className='w-[50%] text-sm'>
+          {title.outline}
+        </p>
+        {comment_recent.data.length > 0 && (
+          <span
+            className='text-[0.7rem]'
+          >最終更新：{comment_recent.data[0].created_at}</span>
+        )}
+      </div>
     </>
   )
 }

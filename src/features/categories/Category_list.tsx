@@ -12,11 +12,10 @@ export default function Category_list() {
       <ul>
         {data.map((item, index) => {
           return (
-            <li>
+            <li key={item.category_id}>
               <Link
                 className="category_links"
                 href={`/SomeCategory/${item.category_id}`}
-                key={item.category_id}
               >
                 {item.category_name}
               </Link>

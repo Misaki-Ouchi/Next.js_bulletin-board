@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import useFetch from '@/features/hooks/getAPI/useFetch'
-import useTimeFunc from '@/features/hooks/getTime/useTimeFunc'
 
 const Post_title = () => {
   const router = useRouter()
@@ -37,12 +36,8 @@ const Post_title = () => {
       formValues.title_name !== '' &&
       formValues.outline !== ''
     ) {
-      const timeData = useTimeFunc()
-      setFormValues({ ...formValues, created_at: timeData })
       // フォーム送信
       postTitles('POST', formValues)
-      // let po_co_val = {title_id: formValues.titleId, created_at: formValues.created_at}
-      // postTitles('POST_COMMENT', po_co_val)
     }
   }
 

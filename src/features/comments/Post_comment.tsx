@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import useFetch from '@/features/hooks/getAPI/useFetch'
 import useTimeFunc from '@/features/hooks/getTime/useTimeFunc'
 
 const Post_comment = ({ title_id }) => {
@@ -23,19 +22,16 @@ const Post_comment = ({ title_id }) => {
   }
 
   // フォーム送信ボタンクリック
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault()
     if (formValues.comment_content === '') return
-
-    const timeData = useTimeFunc()
-    setFormValues({ ...formValues, created_at: timeData })
     // フォーム送信(＆タイトルデータ更新)
-    updateTitle(formValues.created_at)
-    postComments(formValues)
+      // updateTitle(formValues)
+      postComments(formValues)
   }
 
   // POST＆データ取得
-  const postComments = async (values) => {
+  const postComments = async (values: object) => {
     let response
     try {
       const postData = {
@@ -55,24 +51,24 @@ const Post_comment = ({ title_id }) => {
       router.reload()
     }
   }
-  const updateTitle = async (recent_post) => {
-    let response
-    try {
-      const postData = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: recent_post,
-      }
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/titles/${title_id}`,
-        postData,
-      )
-      response = await res.json()
-    } finally {
-    }
-  }
+  // const updateTitle = async (values) => {
+  //   let response
+  //   try {
+  //     const postData = {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(values),
+  //     }
+  //     const res = await fetch(
+  //       `${process.env.NEXT_PUBLIC_URL}/api/titles/update/${title_id}`,
+  //       postData,
+  //     )
+  //     response = await res.json()
+  //   } finally {
+  //   }
+  // }
 
   return (
     <>

@@ -12,7 +12,6 @@ export default async function categories(
     res.status(200).json(categories[0])
   }
 
-  
   if (req.method === 'POST') {
     const categoryName = req.body.category_name
     const sql = `INSERT INTO categories (category_name) VALUES ("${categoryName}")`

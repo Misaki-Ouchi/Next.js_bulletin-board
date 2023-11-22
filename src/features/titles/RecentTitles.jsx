@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useFetch from '@/features/hooks/getAPI/useFetch'
-import ATitle from './ATitle'
+import ARecentTitle from './ARecentTitle'
 
 const RecentTitles = () => {
-  let recentTitles = useFetch(`/titles`)
-  const [count, setCount] = useState(0)
+  // title_id, category_id, recent_postを取得
+  let recentTitleIds = useFetch(`/comments/recent/per_title`)
 
-  if (recentTitles.isLoading) {
+  // const [count, setCount] = useState(0)
+
+  if (recentTitleIds.isLoading) {
     return <p>Loading...</p>
   }
-  if (recentTitles.error) {
+  if (recentTitleIds.error) {
     return <p>データを読み込めませんでした。リロードしてください。</p>
   }
 
-  const titles = recentTitles.data
+  const titlesIds = recentTitleIds.data
 
   // const clickMore = () => {
   //   setCount(count + 1)
@@ -28,13 +30,13 @@ const RecentTitles = () => {
 
       {/* タイトルリスト */}
       <ul className='border-t border-gray-400'>
-        {titles.map((item, index) => {
+        {titlesIds.map((item, index) => {
           return (
             <li
               className='p-1 border-b border-l border-r border-gray-400'
               key={index}
             >
-              <ATitle title={item} category={item.category_id} />
+              <ARecentTitle recentData={item} />
             </li>
           )
         })}

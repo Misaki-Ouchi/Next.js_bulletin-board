@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { DBquery } from '@/libs/db'
+import useTimeFunc from '@/features/hooks/getTime/useTimeFunc'
 
 export default async function comments(
   req: NextApiRequest,
@@ -14,6 +15,7 @@ export default async function comments(
 
   if (req.method === 'POST') {
     const commentValues = req.body
+    commentValues.created_at = useTimeFunc()
     const sql = `INSERT INTO comments (
         title_id,
         user_id,

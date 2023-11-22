@@ -11,6 +11,7 @@ export default function Post_category() {
 
   const onSubmitHandler = async (e: any) => {
     e.preventDefault()
+    let response
 
     const postData = {
       method: 'POST',
@@ -24,10 +25,10 @@ export default function Post_category() {
       `${process.env.NEXT_PUBLIC_URL}/api/categories`,
       postData,
       )
-      const response = await res.json()
+      response = await res.json()
     }
     finally {
-      router.reload()
+      router.push("/NewTopics")
     }
   }
 

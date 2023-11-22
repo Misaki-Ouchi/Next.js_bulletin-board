@@ -9,27 +9,28 @@ export default async function recentComments_per_title(
   if (req.method === 'GET') {
     const sql = `
     SELECT
-    newList.title_id,
-    titles.category_id,
-    newList.created_at
-    FROM
-        (
-        SELECT
-            ROW_NUMBER() OVER (
-                PARTITION BY
-                    title_id
-                ORDER BY
-                    created_at DESC
-            ) AS recentRank,
-            title_id,
-        created_at
-        FROM
-            comments
-        ) AS newList
+      newList.title_id,
+      titles.category_id,
+      newList.created_at
+      FROM
+          (
+          SELECT
+              ROW_NUMBER() OVER (
+                  PARTITION BY
+                      title_id
+                  ORDER BY
+                      created_at DESC
+              ) AS recentRank,
+              title_id,
+      		    created_at
+          FROM
+              comments
+          ) AS newList
     INNER JOIN titles
     ON titles.title_id = newList.title_id
     WHERE
         newList.recentRank = 1
+    ORDER BY newList.created_at DESC
     `
     const titleIdAndRecentPost = await DBquery(sql)
     res.status(200).json(titleIdAndRecentPost[0])

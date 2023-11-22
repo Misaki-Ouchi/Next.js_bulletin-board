@@ -12,7 +12,7 @@ export default function Title_list({ category_id }) {
     return <p>Loading...</p>
   }
   if (titles.error || category.error) {
-    router.reload()
+    return <p>Error Occurred</p>
   }
 
   const titlesD = titles.data

@@ -6,14 +6,15 @@ import useFetch from '@/features/hooks/getAPI/useFetch'
 import Comment_list from '@/features/comments/Comment_list'
 import Post_comment from '@/features/comments/Post_comment'
 
+
 function Title_ID() {
   const router = useRouter()
   const [req, setReq] = useState(router.query.title_id)
-
+  // const req = router.query.title_id
   useEffect(() => {
     setReq(router.query.title_id)
-  }, [router])
-
+    }, [router])
+    
   if(!req) return
 
   return (

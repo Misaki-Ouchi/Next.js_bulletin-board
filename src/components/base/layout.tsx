@@ -3,15 +3,17 @@ import Main from './Main'
 import Aside from './Aside'
 import Footer from './Footer'
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
+      <div className="bodyWrap">
       <Header />
-      <div className='flex flex-row-reverse'>
-        <Main>{children}</Main>
-        <Aside />
-      </div>
+        <div className="flex flex-row-reverse">
+          <Main>{children}</Main>
+          <Aside />
+        </div>
       <Footer />
+      </div>
     </>
   )
 }

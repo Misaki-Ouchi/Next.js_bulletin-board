@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import useTimeFunc from '@/features/hooks/getTime/useTimeFunc'
 
 const Post_comment = ({ title_id }) => {
   const router = useRouter()
+  let user = localStorage.getItem('user')
+  user = JSON.parse(user)
 
   // フォーム用初期値
   const initialValues = {
     title_id: Number(title_id),
-    user_id: 1,
+    user_id: user.user_id,
     comment_content: '',
     created_at: '',
   }
@@ -25,9 +26,8 @@ const Post_comment = ({ title_id }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault()
     if (formValues.comment_content === '') return
-    // フォーム送信(＆タイトルデータ更新)
-      // updateTitle(formValues)
-      postComments(formValues)
+    // フォーム送信
+    postComments(formValues)
   }
 
   // POST＆データ取得
@@ -51,24 +51,6 @@ const Post_comment = ({ title_id }) => {
       router.reload()
     }
   }
-  // const updateTitle = async (values) => {
-  //   let response
-  //   try {
-  //     const postData = {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(values),
-  //     }
-  //     const res = await fetch(
-  //       `${process.env.NEXT_PUBLIC_URL}/api/titles/update/${title_id}`,
-  //       postData,
-  //     )
-  //     response = await res.json()
-  //   } finally {
-  //   }
-  // }
 
   return (
     <>

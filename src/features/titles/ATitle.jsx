@@ -4,15 +4,16 @@ import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 
 export default function ATitle({ title, category }) {
   const comment_recent = useFetch(`/comments/title_id/${title.title_id}/recent`)
+  const postUser = useFetch(`/users/${title.user_id}/user_name`)
   let categoryD
 
   if (typeof category !== 'number') {
     categoryD = category
 
-    if (comment_recent.isLoading || categoryD.isLoading) {
+    if (comment_recent.isLoading || categoryD.isLoading || postUser.isLoading) {
       return <p>Loading...</p>
     }
-    if (comment_recent.error || categoryD.error) {
+    if (comment_recent.error || categoryD.error || postUser.error) {
       return <p>Error occurred.</p>
     }
   }
@@ -35,7 +36,7 @@ export default function ATitle({ title, category }) {
         {comment_recent.data.length > 0 && (
           <span
             className='text-[0.7rem]'
-          >最終更新：{comment_recent.data[0].created_at}</span>
+          >最終更新：{comment_recent.data[0].created_at} {postUser.data[0].user_name}</span>
         )}
       </div>
     </>

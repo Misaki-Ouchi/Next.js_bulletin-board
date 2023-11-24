@@ -1,41 +1,47 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
+import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 import AComment from './AComment'
 
 export default function Comment_list({title_id}) {
   const comments = useFetch(`/comments/title_id/${title_id}`)
   const recentComment = useFetch(`/comments/title_id/${title_id}/recent`)
-  const title = useFetch(`/titles/${title_id}`)
+  let title = useFetch(`/titles/${title_id}`)
+  let resisterUser = useFetch(`/users/title_id/${title_id}/user_name`)
 
-  if (comments.isLoading || title.isLoading || recentComment.isLoading) {
+  if (comments.isLoading || title.isLoading || recentComment.isLoading || resisterUser.isLoading) {
     return <p>Loading...</p>
   }
-  if (comments.error || title.error || recentComment.error) {
+  if (comments.error || title.error || recentComment.error || resisterUser.error) {
     return <p>Error occurred.</p>
   }
 
   const commentLen = comments.data.length
-  const titleD = title.data[0]
-  let recent_post
+  title = title.data[0]
+  resisterUser = resisterUser.data[0].user_name
+
+  let recentPost
   if (recentComment.data.length > 0) {
-    recent_post = recentComment.data[0].created_at
+    recentPost = recentComment.data[0].created_at
   }
 
   return (
     <>
       {/* タイトル情報 */}
       <div>
-        <h2>{titleD.title_name}</h2>
+        <h2>{title.title_name}</h2>
         <hr className='mt-6 mb-6'/>
-        <p className='text-sm'>{titleD.outline}</p>
+        <p className='text-sm'>{title.outline}</p>
       </div>
 
       <div className='m-4'>
         <hr className='mb-1'/>
         <p className='text-[0.7rem]'>
-          {recentComment.data.length > 0 && (<span>更新：{recent_post}</span>)}
+          {recentComment.data.length > 0 && (
+            <span>更新：{recentPost}</span>
+          )}
         <br/>
-          登録：{titleD.created_at}
+          登録：{title.created_at} {resisterUser}
         </p>
       </div>
 

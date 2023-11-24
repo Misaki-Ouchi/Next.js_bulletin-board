@@ -4,6 +4,8 @@ import useFetch from '@/features/hooks/getAPI/useFetch'
 
 const Post_title = () => {
   const router = useRouter()
+  let user = localStorage.getItem('user')
+  user = JSON.parse(user)
 
   // カテゴリー一覧
   const { data, isLoading, error } = useFetch(`/categories`)
@@ -12,6 +14,7 @@ const Post_title = () => {
   const initialValues = {
     title_name: '',
     category_id: 1,
+    user_id: user.user_id,
     outline: '',
     created_at: '',
   }

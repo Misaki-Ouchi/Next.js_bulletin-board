@@ -24,12 +24,14 @@ export default async function titles(
     const sql = `INSERT INTO titles (
         title_name,
         category_id,
+        user_id,
         outline,
         created_at
       )
       VALUES (
         "${titleValues.title_name}",
         "${titleValues.category_id}",
+        "${titleValues.user_id}",
         "${titleValues.outline}",
         "${titleValues.created_at}"
       )`

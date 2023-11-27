@@ -34,17 +34,21 @@ export default function Post_category() {
 
   return (
     <>
-      <form onSubmit={onSubmitHandler} action="/api/categories" method="POST">
+      <form
+        onSubmit={onSubmitHandler}
+        method="POST"
+        className='mb-6'
+      >
         <input
           name="category_name"
           value={categoryName}
           onChange={onChangeHandler}
-          className="mb-2"
+          className="mb-1"
           type="text"
           placeholder="カテゴリ名(2文字以上)"
         />
         <br/>
-        <button type="submit" className="mb-3 btn">
+        <button type="submit" className="btn">
           カテゴリ登録
         </button>
       </form>

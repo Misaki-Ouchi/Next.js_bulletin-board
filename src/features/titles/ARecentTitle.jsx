@@ -21,7 +21,7 @@ export default function ARecentTitle({ recentData }) {
 
   return (
     <>
-      <Link href={`/SomeTitle/${recentData.title_id}`}>
+      <Link href={{ pathname: `/SomeTitle/${recentData.title_id}`, query: {recentPost_userName: postUser}}} as={`/SomeTitle/${title.title_id}`}>
         {title.title_name}
       </Link>
       <Link

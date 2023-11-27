@@ -3,7 +3,7 @@ import useFetch from '@/features/hooks/getAPI/useFetch'
 import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 import AComment from './AComment'
 
-export default function Comment_list({title_id}) {
+export default function Comment_list({title_id, recentPostName}) {
   const comments = useFetch(`/comments/title_id/${title_id}`)
   const recentComment = useFetch(`/comments/title_id/${title_id}/recent`)
   let title = useFetch(`/titles/${title_id}`)
@@ -38,7 +38,7 @@ export default function Comment_list({title_id}) {
         <hr className='mb-1'/>
         <p className='text-[0.7rem]'>
           {recentComment.data.length > 0 && (
-            <span>更新：{recentPost}</span>
+            <span>更新：{recentPost} {recentPostName}</span>
           )}
         <br/>
           登録：{title.created_at} {resisterUser}

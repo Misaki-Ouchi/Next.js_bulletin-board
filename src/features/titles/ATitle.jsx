@@ -20,7 +20,7 @@ export default function ATitle({ title, category }) {
 
   return (
     <>
-      <Link href={`/SomeTitle/${title.title_id}`}>
+      <Link href={{ pathname: `/SomeTitle/${title.title_id}`, query: {recentPost_userName: postUser.data[0].user_name}}} as={`/SomeTitle/${title.title_id}`}>
         {title.title_name}
       </Link>
       <Link

@@ -4,40 +4,52 @@ import useFetch from '@/features/hooks/getAPI/useFetch'
 
 const Post_title = () => {
   const router = useRouter()
-  let user = localStorage.getItem('user')
-  user = JSON.parse(user)
-
   // カテゴリー一覧
   const { data, isLoading, error } = useFetch(`/categories`)
-
   // フォーム用初期値
   const initialValues = {
     title_name: '',
     category_id: 1,
-    user_id: user.user_id,
+    user_id: '',
     outline: '',
     created_at: '',
   }
   // フォーム入力値
   const [formValues, setFormValues] = useState(initialValues)
-
   // バリデーションエラー値
   const [formErrors, setFormErrors] = useState({})
+
+  // ロード中
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
+  // エラー時
+  if (error) {
+    return <p>Error occurred.</p>
+  }
 
   // 入力値保存
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value })
+
+    if (formValues.user_id === '') {
+      let user = localStorage.getItem('user')
+      user = JSON.parse(user)[0]
+      setFormValues({ ...formValues, user_id: Number(user.user_id) })
+    }
   }
 
   // フォーム送信ボタンクリック
   const handleSubmit = (e) => {
     e.preventDefault()
     setFormErrors(validate(formValues))
+
     if (
       Object.keys(formErrors).length === 0 &&
       formValues.title_name !== '' &&
-      formValues.outline !== ''
+      formValues.outline !== '' &&
+      formValues.user_id !== ''
     ) {
       // フォーム送信
       postTitles('POST', formValues)
@@ -76,21 +88,10 @@ const Post_title = () => {
         postData,
       )
       response = await res.json()
-    }
-    finally {
+    } finally {
       // 新タイトルのコメント一覧ページへ
       router.push(`/SomeTitle/${response}`)
-      // setTitleId(response)
     }
-  }
-
-  // ロード中
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-  // エラー時
-  if (error) {
-    return <p>Error occurred.</p>
   }
 
   return (

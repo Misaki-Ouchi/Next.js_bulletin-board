@@ -14,7 +14,8 @@ body {
 }
 header {
   position: relative;
-  width: 100vw;
+  padding: 1rem;
+  padding-right: 0;
   box-shadow: 0 2px 5px #aaa;
   z-index: 10;
 }
@@ -25,7 +26,7 @@ aside {
   position: absolute;
   left: 0;
   width: 12rem;
-  height: calc(100% - 7rem);
+  height: 100%;
   box-shadow: 2px 0 5px #aaa;
   padding-bottom: 0;
 }
@@ -119,4 +120,35 @@ select {
   position: absolute;
   left: 12rem;
   padding-top: 1rem;
+}
+
+/* ユーザーネーム、ログアウトボタン */
+.userInfo {
+  position: relative;
+  width: 7rem;
+  height: 1.5rem;
+  text-align: center;
+}
+.userInfo .userName {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  color: #fff;
+  margin: -1rem auto 0;
+  padding: 1rem 0;
+}
+.userInfo .userName:hover {
+  background-color: #ea4;
+}
+.userInfo .userMenu {
+  position: absolute;
+  top: 2.5rem;
+  width: 100%;
+  padding: 1rem;
+  border-color: inherit;
+}
+.logout_button {
+  font-size: 0.9rem;
+  text-decoration: underline;
+  color: #03a;
 }

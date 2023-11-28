@@ -18,12 +18,12 @@ function Title_ID() {
   if(!req) return
 
   return (
-    <>
+    <div className='postPage'>
         <Layout>
           <Comment_list title_id={req} recentPostName={recentPostName} />
-          <Post_comment title_id={req} />
+        <Post_comment title_id={req} />
         </Layout>
-    </>
+    </div>
   )
 
 }

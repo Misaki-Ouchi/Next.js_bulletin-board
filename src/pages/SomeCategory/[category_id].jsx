@@ -10,11 +10,11 @@ export default function Category_ID() {
   if(!req) return <p>loading</p>
 
   return (
-    <>
+    <div>
       <Layout>
         <Title_list category_id={req} />
       </Layout>
-    </>
+    </div>
   )
 
 }

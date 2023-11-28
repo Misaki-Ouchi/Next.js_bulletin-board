@@ -5,16 +5,14 @@ import Footer from './Footer'
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <div className="bodyWrap">
+    <div className='bodyWrap'>
       <Header />
-        <div className="flex flex-row-reverse">
-          <Main>{children}</Main>
-          <Aside />
-        </div>
-      <Footer />
+      <div className="asideAndMain">
+        <Aside />
+        <Main>{children}</Main>
       </div>
-    </>
+      <Footer />
+    </div>
   )
 }
 

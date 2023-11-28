@@ -4,19 +4,18 @@ import useFetch from '@/features/hooks/getAPI/useFetch'
 import ARecentTitle from './ARecentTitle'
 
 const RecentTitles = () => {
-  // title_id, category_id, recent_postを取得
-  let recentTitleIds = useFetch(`/comments/recent/per_title`)
+  // title_id, category_id, recent_post(最新コメントのcreated_at)を取得
+  let recentTitles = useFetch(`/titles/recent`)
 
-  // const [count, setCount] = useState(0)
 
-  if (recentTitleIds.isLoading) {
+  if (recentTitles.isLoading) {
     return <p>Loading...</p>
   }
-  if (recentTitleIds.error) {
+  if (recentTitles.error) {
     return <p>データを読み込めませんでした。リロードしてください。</p>
   }
 
-  const titlesIds = recentTitleIds.data
+  recentTitles = recentTitles.data
 
   // const clickMore = () => {
   //   setCount(count + 1)
@@ -30,7 +29,7 @@ const RecentTitles = () => {
 
       {/* タイトルリスト */}
       <ul className='border-t border-gray-400'>
-        {titlesIds.map((item, index) => {
+        {recentTitles.map((item, index) => {
           return (
             <li
               className='p-1 border-b border-l border-r border-gray-400'

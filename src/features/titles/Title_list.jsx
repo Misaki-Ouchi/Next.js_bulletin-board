@@ -1,5 +1,4 @@
 import useFetch from '@/features/hooks/getAPI/useFetch'
-import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 import ATitle from './ATitle'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'

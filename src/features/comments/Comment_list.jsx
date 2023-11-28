@@ -26,7 +26,7 @@ export default function Comment_list({title_id, recentPostName}) {
   }
 
   return (
-    <>
+    <div className='comment_list'>
       {/* タイトル情報 */}
       <div>
         <h2>{title.title_name}</h2>
@@ -61,6 +61,6 @@ export default function Comment_list({title_id, recentPostName}) {
           )
         })}
       </ul>
-    </>
+    </div>
   )
 }

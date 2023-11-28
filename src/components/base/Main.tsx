@@ -23,10 +23,8 @@ const Main = ({ children }) => {
 
   return (
     <>
-      <main className="container">
-        <div className="container_box mb-4">
+      <main>
           {children}
-        </div>
       </main>
     </>
   )

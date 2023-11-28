@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
 import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
+import useOmitTimeFunc from "@/features/hooks/getTime/useOmitTimeFunc"
 
 export default function ATitle({ title, category }) {
   const comment_recent = useFetch(`/comments/title_id/${title.title_id}/recent`)
@@ -18,6 +19,14 @@ export default function ATitle({ title, category }) {
     }
   }
 
+  // 更新年月日同じ場合は省略
+  let date
+  if (comment_recent.data.length > 0) {
+    date = useOmitTimeFunc(comment_recent.data[0].created_at)
+  } else {
+    date = useOmitTimeFunc(title.created_at)
+  }
+
   return (
     <>
       <Link href={{ pathname: `/SomeTitle/${title.title_id}`, query: {recentPost_userName: postUser.data[0].user_name}}} as={`/SomeTitle/${title.title_id}`}>
@@ -30,14 +39,13 @@ export default function ATitle({ title, category }) {
         {categoryD.category_name}
       </Link>
       <div className='flex justify-between'>
-        <p className='w-[50%] text-sm'>
+        <p className='w-[90%] text-sm'>
           {title.outline}
         </p>
-        {comment_recent.data.length > 0 && (
           <span
             className='text-[0.7rem]'
-          >最終更新：{comment_recent.data[0].created_at} {postUser.data[0].user_name}</span>
-        )}
+        >最終更新：{date} {postUser.data[0].user_name}</span>
+
       </div>
     </>
   )

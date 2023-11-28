@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @layer components {
-  .container_box {
+  /* .container_box {
     @apply container p-4
-  }
+  } */
   .newTopic_input {
     @apply w-full
   }

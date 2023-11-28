@@ -60,10 +60,10 @@ const Post_comment = ({ title_id }) => {
 
   return (
     <>
-      <div className="container_box w-full bg-gray-300 relative bottom-0">
-        <div className="flex items-stretch text-sm">
+      <div className="comment_box bg-gray-300">
+        <div className="flex text-sm">
           <textarea
-            className="flex-grow mr-2"
+            className="flex-grow"
             placeholder="500文字以内"
             name="comment_content"
             value={formValues.comment_content}

@@ -6,7 +6,7 @@ const Aside = () => {
   return (
     <>
       <aside className="container_box max-w-[160px] bg-yellow-50 text-sm">
-        <div>
+        <div className='aside_container'>
           <Link
             href="/NewTopics"
             className='block text-center p-1 mb-4 bg-green-300 hover:bg-green-500'>

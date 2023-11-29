@@ -1,14 +1,13 @@
 import type { NextPage } from 'next'
 import Layout from '@/components/base/Layout'
-import RecentTitles from '@/features/titles/RecentTitles'
+import RecentTitleArea from '@/features/titles/RecentTitleArea'
 
 const Top: NextPage = () => {
-
   return (
     <>
-        <Layout>
-          <RecentTitles />
-        </Layout>
+      <Layout>
+        <RecentTitleArea />
+      </Layout>
     </>
   )
 }

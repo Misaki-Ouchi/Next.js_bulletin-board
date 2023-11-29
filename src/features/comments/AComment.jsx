@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
-import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 
 export default function AComment({comment_id, user_id, index}) {
   const comment = useFetch(`/comments/${comment_id}`)
-  const postUser = useFetch_col(`/users/${user_id}/user_name`)
+  const postUser = useFetch(`/users/${user_id}/user_name`)
 
   if (comment.isLoading || postUser.isLoading) {
     return <p>Loading...</p>

@@ -8,13 +8,9 @@ import Post_comment from '@/features/comments/Post_comment'
 
 function Title_ID() {
   const router = useRouter()
-  const [req, setReq] = useState(router.query.title_id)
+  const req = router.query.title_id
   const recentPostName = router.query.recentPost_userName
 
-  useEffect(() => {
-    setReq(router.query.title_id)
-    }, [router])
-    
   if(!req) return
 
   return (

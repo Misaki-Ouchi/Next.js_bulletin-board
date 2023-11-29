@@ -122,6 +122,9 @@ select {
 .btn:hover {
   background-color: rgb(220, 220, 220);
 }
+.btn:disabled {
+  opacity: 0.7;
+}
 .form_label {
   min-width: 5rem;
   margin-right: 2rem;
@@ -175,15 +178,15 @@ select {
 .userInfo {
   position: relative;
   width: 7rem;
-  height: 1.5rem;
+  height: 3rem;
   text-align: center;
+  color: #fff;
 }
 .userInfo .userName {
   display: block;
   width: 100%;
   font-size: 1rem;
-  color: #fff;
-  margin: -1rem auto 0;
+  line-height: 1;
   padding: 1rem 0;
 }
 .userInfo .userName:hover {
@@ -191,11 +194,40 @@ select {
 }
 .userInfo .userMenu {
   position: absolute;
-  top: 2.5rem;
+  top: 3rem;
   width: 100%;
   padding: 1rem;
-  border-color: inherit;
 }
 .logout_button {
   font-size: 0.8em;
+}
+
+/* asideカテゴリー一覧 */
+.category_list {
+  /* display: flex;
+  gap: 0.2rem; */
+  /* align-items: center; */
+}
+.category_down,
+.category_links {
+  padding: 0.2rem 0.3rem;
+}
+.category_down:hover,
+.category_links:hover {
+  background-color: #ea4;
+}
+.category_down.isDown {
+  transform: rotateZ(90deg);
+}
+.category_links {
+  display: inline-block;
+  width: 80%;
+}
+.simpleTitle {
+  font-size: 0.85rem;
+  padding: 0.1rem 0;
+  margin-left: 1.5rem;
+}
+.simpleTitle:hover {
+  background-color: #ea4;
 }

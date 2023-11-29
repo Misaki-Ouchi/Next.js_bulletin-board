@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
-import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 import useOmitTimeFunc from "@/features/hooks/getTime/useOmitTimeFunc"
 
 export default function ARecentTitle({ recentData }) {

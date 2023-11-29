@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
-import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 import useOmitTimeFunc from "@/features/hooks/getTime/useOmitTimeFunc"
 
 export default function ATitle({ title, category }) {
@@ -45,7 +44,6 @@ export default function ATitle({ title, category }) {
           <span
             className='text-[0.7rem]'
         >最終更新：{date} {postUser.data[0].user_name}</span>
-
       </div>
     </>
   )

@@ -22,11 +22,12 @@ const LogIn = () => {
       postUsers_login(formValues)
     }
     if (loggedIn && !error) {
-      router.push('/Top')
+      router.push({pathname:'Top/1'})
     }
   }
 
   const postUsers_login = async (values: object) => {
+    setError(false)
     let response
     try {
       const postData = {

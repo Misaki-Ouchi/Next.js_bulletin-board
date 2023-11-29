@@ -12,7 +12,7 @@ const Header = () => {
           学習用ページへ
         </Link> */}
           <div className='header_icon'>
-            <Link href='/Top' className='font-bold text-white hover:text-yellow-500 hover:bg-yellow-50'>
+            <Link href='/Top/1' className='font-bold text-white hover:text-yellow-500 hover:bg-yellow-50'>
               Next掲示板
             </Link>
           </div>

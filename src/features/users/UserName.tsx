@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import LogoutButton from '@/features/users/LogoutButton'
+import Link from 'next/link'
 
 const UserName = () => {
   const [user, setUser] = useState()
@@ -7,14 +8,22 @@ const UserName = () => {
 
   useEffect(() => {
     let persona = localStorage.getItem('user')
-    setUser(JSON.parse(persona)[0])
+    if (persona) {
+      setUser(JSON.parse(persona)[0])
+    }
   }, [])
 
   const handleClick = () => {
     setIsShow(!isShow)
   }
 
-  if (!user) return
+  if (!user) {
+    return (
+      <div className='userInfo'>
+        <Link className="userName" href={'/'}>ログイン</Link>
+      </div>
+    )
+  }
 
   return (
     <div className='userInfo'>

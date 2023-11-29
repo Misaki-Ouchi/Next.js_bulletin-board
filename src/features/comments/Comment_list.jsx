@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
-import useFetch_col from '@/features/hooks/getAPI/useFetch_col'
 import AComment from './AComment'
 
 export default function Comment_list({title_id, recentPostName}) {

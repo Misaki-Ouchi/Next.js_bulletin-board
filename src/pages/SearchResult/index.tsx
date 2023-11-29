@@ -1,33 +1,41 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router'
 import Layout from '@/components/base/Layout'
-import Title_list from '@/features/titles/Title_list'
 import useFetch from '@/features/hooks/getAPI/useFetch'
+import Search_titleName from '@/features/search/Search_titleName'
+import Search_comment from '@/features/search/Search_comment'
+import Search_outline from '@/features/search/Search_outline'
 
-export default function Category_ID() {
+export default function SearchResult() {
   const router = useRouter()
+  const columnName = router.query.columnName
   const word = router.query.word
-  const type = router.query.type
 
-  // if (!req) return <p>loading</p>
-  
-  if (type === 'タイトル') {
-    // titles(ループ)と categoryをATitleに渡す
-    const titles = useFetch(`/search/titles/title_name/${word}`)
+  if (!columnName || !word) return <p>loading</p>
+
+  const data = useFetch(`/search/${columnName}/${word}`)
+
+  if (data.isLoading) {
+    return <p>Loading...</p>
   }
-  if (type === '本文') {
-    //
-  }
-  if (type === 'コメント') {
-    // t
+  if (data.error) {
+    return (
+      <Layout>
+        <p>該当するデータはありませんでした。</p>
+      </Layout>
+    )
   }
 
   return (
-    <>
-      <Layout>
-        {/* <Title_list category_id={req} /> */}
-      </Layout>
-    </>
-  )
+    <Layout>
+      <p className='mb-4 text-sm'>検索結果（全{data.data.length}件を表示）</p>
 
+      {columnName === 'title_name' && (
+        <Search_titleName titleData={data} word={word} />
+      )}
+      {columnName === 'outline' && <Search_outline outlineData={data} />}
+      {columnName === 'comment_content' && (
+        <Search_comment commentData={data} />
+      )}
+    </Layout>
+  )
 }

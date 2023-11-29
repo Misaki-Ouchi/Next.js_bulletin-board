@@ -12,7 +12,7 @@
   .form_btn {
     @apply m-auto block
   }
-  .category_links {
-    @apply block hover:bg-yellow-200 before:mr-2 before:content-['>']
-  }
+  /* .category_links {
+    @apply  hover:bg-yellow-200 before:mr-2
+  } */
 }

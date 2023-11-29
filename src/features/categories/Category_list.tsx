@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import useFetch from '@/features/hooks/getAPI/useFetch'
 import Link from 'next/link'
+import SimpleTitleList from '@/features/titles/SimpleTitleList'
+import ACategory from '@/features/categories/ACategory'
 
 export default function Category_list() {
   const { data, isLoading, error } = useFetch('/categories')
@@ -12,13 +15,11 @@ export default function Category_list() {
       <ul>
         {data.map((item, index) => {
           return (
-            <li key={item.category_id}>
-              <Link
-                className="category_links"
-                href={`/SomeCategory/${item.category_id}`}
-              >
-                {item.category_name}
-              </Link>
+            <li
+              className='category_list'
+              key={item.category_id}
+            >
+              <ACategory category={item} />
             </li>
           )
         })}

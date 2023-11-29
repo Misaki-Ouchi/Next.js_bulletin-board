@@ -5,6 +5,10 @@ export default async function recentComments_per_title(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+
+  const page = req.query.params[0]
+  const count = req.query.params[1]
+  
   if (req.method === 'GET') {
     const sql = `
     SELECT * FROM
@@ -42,6 +46,7 @@ export default async function recentComments_per_title(
         	NOT IN (SELECT comments.title_id FROM comments))
         as unionList
     ORDER BY unionList.created_at DESC
+    LIMIT ${count} OFFSET ${(page - 1) * 10 + 1}
     `
     const titleIdAndRecentPost = await DBquery(sql)
     res.status(200).json(titleIdAndRecentPost[0])

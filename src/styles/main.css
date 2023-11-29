@@ -204,9 +204,7 @@ select {
 
 /* asideカテゴリー一覧 */
 .category_list {
-  /* display: flex;
-  gap: 0.2rem; */
-  /* align-items: center; */
+  margin-bottom: 1rem;
 }
 .category_down,
 .category_links {
@@ -225,8 +223,9 @@ select {
 }
 .simpleTitle {
   font-size: 0.85rem;
-  padding: 0.1rem 0;
+  padding: 0.5rem 0;
   margin-left: 1.5rem;
+  line-height: 1;
 }
 .simpleTitle:hover {
   background-color: #ea4;

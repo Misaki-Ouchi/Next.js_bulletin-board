@@ -4,10 +4,11 @@ import Link from 'next/link'
 import SimpleTitleList from '@/features/titles/SimpleTitleList'
 
 export default function ACategory({ category }) {
-  const { data, isLoading, error } = useFetch('/categories')
+  const { data, isLoading, error } = useFetch(
+    `/titles/category_id/${category.category_id}`,
+  )
   const [isTitlesShow, setIsTitlesShow] = useState(false)
-  const [btnClass, setBtnClass] = useState()
-
+  
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error occurred.</p>
 
@@ -28,8 +29,9 @@ export default function ACategory({ category }) {
         href={`/SomeCategory/${category.category_id}`}
       >
         {category.category_name}
+        ({data.length})
       </Link>
-      {isTitlesShow && <SimpleTitleList category_id={category.category_id} />}
+      {isTitlesShow && <SimpleTitleList titles={data} />}
     </>
   )
 }

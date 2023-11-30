@@ -5,7 +5,7 @@ import Link from 'next/link'
 const Aside = () => {
   return (
     <>
-      <aside className="max-w-[160px] bg-yellow-50 text-sm">
+      <aside className="max-w-[160px] text-sm">
           <Link
             href="/NewTopics"
             className='block text-center p-1 mb-4 bg-green-300 hover:bg-green-500'>

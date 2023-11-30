@@ -26,7 +26,7 @@ const RecentTitles = () => {
           return (
             <li
               className='p-1 border-b border-l border-r border-gray-400'
-              key={index}
+              key={item.title_id}
             >
               <ARecentTitle recentData={item} />
             </li>

@@ -7,7 +7,7 @@ const SimpleTitleList = ({ titles }) => {
     return (
       <div
         className='simpleTitle'
-        key={index}
+        key={title.title_id}
       >
         <Link
           href={`/SomeTitle/${title.title_id}`}

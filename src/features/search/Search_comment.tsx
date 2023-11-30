@@ -10,7 +10,7 @@ export default function Search_comment({commentData}) {
           return (
             <li
               className='p-1 border-b border-l border-r border-gray-400'
-              key={index}
+              key={data.comment_id}
             >
               <div>
                 <Link href={{ pathname: `/SomeTitle/${data.title_id}`, query: {recentPost_userName: data.user_name}}} as={`/SomeTitle/${data.title_id}`}>

@@ -10,7 +10,7 @@ export default function Search_titleName({titleData, word}) {
           return (
             <li
               className='p-1 border-b border-l border-r border-gray-400'
-              key={index}
+              key={title.title_id}
             >
               <Link
                 href={{ pathname: `/SomeTitle/${title.title_id}`, query: { recentPost_userName: title.user_name } }}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import useFetch from '@/features/hooks/getAPI/useFetch'
 import useOmitTimeFunc from "@/features/hooks/getTime/useOmitTimeFunc"
+import RecentPostUser from "@/features/users/RecentPostUser"
 
 export default function ATitle({ title, category }) {
   const comment_recent = useFetch(`/comments/title_id/${title.title_id}/recent`)
@@ -26,6 +27,8 @@ export default function ATitle({ title, category }) {
     date = useOmitTimeFunc(title.created_at)
   }
 
+  let recentPostUserId = comment_recent.data.user_id
+
   return (
     <>
       <Link href={{ pathname: `/SomeTitle/${title.title_id}`, query: {recentPost_userName: postUser.data[0].user_name}}} as={`/SomeTitle/${title.title_id}`}>
@@ -43,7 +46,12 @@ export default function ATitle({ title, category }) {
         </p>
           <span
             className='text-[0.7rem]'
-        >最終更新：{date} {postUser.data[0].user_name}</span>
+        >最終更新：{date}
+          <RecentPostUser
+            resistUser={postUser.data[0].user_name}
+            recentPostUserId={recentPostUserId}
+          />
+        </span>
       </div>
     </>
   )

@@ -10,7 +10,7 @@ export default function Search_outline({outlineData}) {
           return (
             <li
               className='p-1 border-b border-l border-r border-gray-400'
-              key={index}
+              key={data.title_id}
             >
               <div>
                 <Link href={{ pathname: `/SomeTitle/${data.title_id}`, query: {recentPost_userName: data.user_name}}} as={`/SomeTitle/${data.title_id}`}>

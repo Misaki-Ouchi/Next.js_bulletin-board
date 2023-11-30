@@ -43,18 +43,19 @@ aside {
   top: 3rem;
   left: 0;
   width: 200px;
-  height: calc(100% - 2rem);
+  min-height: calc(100% - 3rem);
   padding: 1rem;
+  padding-bottom: 2rem;
   box-shadow: 2px 0 5px #aaa;
   z-index: 5;
 }
 .postPage aside {
-  height: 100%;
+  height: calc(100% - 4rem);
   overflow-y: auto;
 }
 .asideAndMain {
   position: relative;
-  min-height: calc(100vh - 5rem);
+  min-height: calc(100vh - 2rem);
   display: flex;
 }
 footer {
@@ -203,6 +204,9 @@ select {
 }
 
 /* asideカテゴリー一覧 */
+.aside_list {
+  height: 100%;
+}
 .category_list {
   margin-bottom: 1rem;
 }
@@ -226,6 +230,10 @@ select {
   padding: 0.5rem 0;
   margin-left: 1.5rem;
   line-height: 1;
+}
+.simpleTitle a {
+  display: inline-block;
+  width: 100%;
 }
 .simpleTitle:hover {
   background-color: #ea4;

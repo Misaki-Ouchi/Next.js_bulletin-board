@@ -5,8 +5,7 @@ import Link from 'next/link'
 const Aside = () => {
   return (
     <>
-      <aside className="container_box max-w-[160px] bg-yellow-50 text-sm">
-        <div className='aside_container'>
+      <aside className="max-w-[160px] bg-yellow-50 text-sm">
           <Link
             href="/NewTopics"
             className='block text-center p-1 mb-4 bg-green-300 hover:bg-green-500'>
@@ -14,7 +13,6 @@ const Aside = () => {
           </Link>
           <Post_category />
           <Category_list />
-        </div>
       </aside>
     </>
   )

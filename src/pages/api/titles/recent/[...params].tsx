@@ -5,10 +5,9 @@ export default async function recentComments_per_title(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-
   const page = req.query.params[0]
   const count = req.query.params[1]
-  
+
   if (req.method === 'GET') {
     const sql = `
     SELECT * FROM

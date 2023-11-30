@@ -12,7 +12,7 @@ export default function Category_list() {
 
   return (
     <>
-      <ul>
+      <ul className='aside_list'>
         {data.map((item, index) => {
           return (
             <li

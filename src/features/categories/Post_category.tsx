@@ -43,9 +43,9 @@ export default function Post_category() {
           name="category_name"
           value={categoryName}
           onChange={onChangeHandler}
-          className="mb-1"
+          className="mb-1 text-xs"
           type="text"
-          placeholder="カテゴリ名(2文字以上)"
+          placeholder="2文字以上"
         />
         <br/>
         <button type="submit" className="btn">
